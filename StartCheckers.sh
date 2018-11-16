@@ -3,23 +3,22 @@
 #sudo chmod 755 
 #sudo update-rc.d StartCheckers.sh defaults
 
-scriptHome="/home/hal/sources/oe-test/oe-test-devopsservicechecks"
-logsHome="/home/hal/oe-test-logs"
+scriptHome=$OE_TEST_HOME/devopsCheckers
  
 case "$1" in
   start)
     echo "Starting live service checker..."
-    python $scriptHome/batchLiveServiceWarningTool.py $logsHome/batchLiveServiceWarningTool.log &
+    python $scriptHome/batchLiveServiceWarningTool.py $CHECKER_LOGS_HOME/batchLiveServiceWarningTool.log &
     echo "Starting stale history checker..."
-    python $scriptHome/batchStaleHistoryWarning.py $logsHome/batchStaleHistoryWarning.log &
+    python $scriptHome/batchStaleHistoryWarning.py $CHECKER_LOGS_HOME/batchStaleHistoryWarning.log &
     echo "Starting willlowbrook stale history checker..."
-    python $scriptHome/historyCheckWillowbrook.py $logsHome/historyCheckWillowbrook.log &
+    python $scriptHome/historyCheckWillowbrook.py $CHECKER_LOGS_HOME/historyCheckWillowbrook.log &
     echo "Starting edison api checker..."
-    python $scriptHome/edisonApiChecker.py $logsHome/edisonApiChecker.log &
+    python $scriptHome/edisonApiChecker.py $CHECKER_LOGS_HOME/edisonApiChecker.log &
     echo "Starting edison stale data checker..."
-    python $scriptHome/edisonStaleDataChecker.py $logsHome/edisonStaleDataChecker.log &
+    python $scriptHome/edisonStaleDataChecker.py $CHECKER_LOGS_HOME/edisonStaleDataChecker.log &
     echo "Starting stale atom file checker..."
-    python $scriptHome/atomFileStaleChecker.py $logsHome/atomFileStaleChecker.log &
+    python $scriptHome/atomFileStaleChecker.py $CHECKER_LOGS_HOME/atomFileStaleChecker.log &
     ;;
   stop)
     echo "Killing checkers!"
