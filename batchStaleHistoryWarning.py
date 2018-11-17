@@ -37,8 +37,9 @@ class BatchStaleHistoryWarning():
         #whiteList.append(291) #TabDM05
         #whiteList.append(181) #TabDB01
         whiteList.append(319) #BrynMawrPA
+        whiteList.append(160) #EthiconNM
 
-        stuff = str(whiteList ).strip('[]')
+        stuff = str(whiteList).strip('[]')
 
         return stuff
 
