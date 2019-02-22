@@ -1,0 +1,6 @@
+.idea
+~$*.*
+py3env/
+quicktest.py
+.python-version
+*.pyc
