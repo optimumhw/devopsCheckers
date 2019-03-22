@@ -28,9 +28,9 @@ class BatchStaleHistoryWarning():
 
         whiteList = []
 
-        whiteList.append(345) #CEPMMelia2
-        whiteList.append(361) #CEPMRoyltn
-        whiteList.append(370) #CEPMMelCIR
+        #whiteList.append(345) #CEPMMelia2
+        #whiteList.append(361) #CEPMRoyltn
+        #whiteList.append(370) #CEPMMelCIR
         whiteList.append(342) #JJCrkB2
         whiteList.append(319) #BrynMawrPA
         whiteList.append(160) #EthiconNM
