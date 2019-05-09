@@ -37,6 +37,7 @@ class BatchStaleHistoryWarning():
         whiteList.append(426) #all three Bank of America stations
         whiteList.append(396) #SchaffB49
         whiteList.append(361) #CEPMRoyltn
+        whiteList.append(446) #MCormkHV
 
 
         stuff = str(whiteList).strip('[]')
