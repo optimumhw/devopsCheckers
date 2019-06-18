@@ -38,6 +38,7 @@ class BatchStaleHistoryWarning():
         whiteList.append(396) #SchaffB49
         whiteList.append(361) #CEPMRoyltn
         whiteList.append(446) #MCormkHV
+        whiteList.append(350) #RaritanLP
 
 
         stuff = str(whiteList).strip('[]')
