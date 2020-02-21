@@ -92,8 +92,8 @@ class EdisonStaleDataChecker():
     def getSpWho2Info(self):
 
         with pymssql.connect(host='e3os-sql.optimumenergy.net', user='Tominator', password='dT0A@N^V', as_dict=True) as conn:
-            with  conn.cursor() as cur:
-                cur.callproc( 'sp_who2' )
+            with conn.cursor() as cur:
+                cur.callproc('sp_who2')
                 rows = []
                 for row in cur:
                     jsonRowString = json.dumps(row)

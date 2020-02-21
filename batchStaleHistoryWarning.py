@@ -39,11 +39,16 @@ class BatchStaleHistoryWarning():
         whiteList.append(361) #CEPMRoyltn
         whiteList.append(446) #MCormkHV
         whiteList.append(350) #RaritanLP
+        whiteList.append(420) #vIntel-VietnamCUiB
+        whiteList.append(323) #db-05
+        whiteList.append(58)  #winnepeg hsc
+        whiteList.append(486) #micron
+        whiteList.append(368) #reading
 
 
-        stuff = str(whiteList).strip('[]')
+        list = str(whiteList).strip('[]')
 
-        return stuff
+        return list
 
     def checkDB(self):
 
