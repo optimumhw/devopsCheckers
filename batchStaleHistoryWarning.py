@@ -52,13 +52,42 @@ class BatchStaleHistoryWarning():
 
     def checkDB(self):
 
+
+        # old_queryString = '''
+        #
+        # ;with
+        # NiagaraNetworkDownIDs as (
+        #     select distinct SiteID  from oemvm.dim.vwAlertAllList
+        #     where AlertID = 2 or AlertID = 7 or AlertID = 14 or AlertID = 11
+        #  ) ,
+        #  StaleHistoryIDs as (
+        #     Select distinct SiteID from [oemvm].[dim].[vwAlertAllList]
+        #     where AlertID = 12
+        # ) ,
+        # FinalIDs as (
+        #     Select  m.SiteID from StaleHistoryIDs m except select n.SiteID from NiagaraNetworkDownIDs n
+        # )
+        # select c.Name CustomerName, site.SiteID, site.ShortName SiteName, inst.InstallationID, station.StationID, station.SupervisorID, super.BaseAddressHistory, super.BaseAddressLive
+        # from FinalIDs f, oemvm.dim.Customer c, oemvm.dim.Site site
+        # join oemvm.dim.Installation inst on inst.SiteID = site.SiteID
+        # join oemvm.dim.Station station on station.InstallationID = inst.InstallationID
+        # join oemvm.dim.supervisor super on super.SupervisorID = station.SupervisorID
+        # where f.SiteID = site.SiteID and site.CustomerID = c.CustomerID
+        # and site.SiteID not in (%s)
+        #
+        # ''' % self.getWhiteList()
+
+
         queryString = '''
 
         ;with
         NiagaraNetworkDownIDs as (
-            select distinct SiteID  from oemvm.dim.vwAlertAllList
-            where AlertID = 2 or AlertID = 7 or AlertID = 14 or AlertID = 11
-         ) ,
+        select distinct SiteID  from oemvm.dim.vwAlertAllList
+        where ( AlertID = 2 or 
+            (  AlertID = 7 and 
+               AlertName in ('JACE Connection Down', 'NiagaraNetworkDown') ) 
+            or AlertID = 14 or  AlertID = 11 ) 
+         ),
          StaleHistoryIDs as (
             Select distinct SiteID from [oemvm].[dim].[vwAlertAllList]
             where AlertID = 12
