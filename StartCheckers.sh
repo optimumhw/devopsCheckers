@@ -13,10 +13,10 @@ case "$1" in
     python $scriptHome/batchStaleHistoryWarning.py $CHECKER_LOGS_HOME/batchStaleHistoryWarning.log &
     echo "Starting willlowbrook stale history checker..."
     python $scriptHome/historyCheckWillowbrook.py $CHECKER_LOGS_HOME/historyCheckWillowbrook.log &
-    echo "Starting edison api checker..."
-    python $scriptHome/edisonApiChecker.py $CHECKER_LOGS_HOME/edisonApiChecker.log &
-    echo "Starting edison stale data checker..."
-    python $scriptHome/edisonStaleDataChecker.py $CHECKER_LOGS_HOME/edisonStaleDataChecker.log &
+    #echo "Starting edison api checker..."
+    #python $scriptHome/edisonApiChecker.py $CHECKER_LOGS_HOME/edisonApiChecker.log &
+    #echo "Starting edison stale data checker..."
+    #python $scriptHome/edisonStaleDataChecker.py $CHECKER_LOGS_HOME/edisonStaleDataChecker.log &
     echo "Starting stale atom file checker..."
     python $scriptHome/atomFileStaleChecker.py $CHECKER_LOGS_HOME/atomFileStaleChecker.log &
     ;;
