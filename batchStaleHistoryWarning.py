@@ -44,6 +44,7 @@ class BatchStaleHistoryWarning():
         whiteList.append(58)  #winnepeg hsc
         whiteList.append(486) #micron
         whiteList.append(368) #reading
+        whiteList.append(378) #greenwich lane
 
 
         list = str(whiteList).strip('[]')
