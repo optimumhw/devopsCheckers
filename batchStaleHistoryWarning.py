@@ -45,7 +45,9 @@ class BatchStaleHistoryWarning():
         whiteList.append(486) #micron
         whiteList.append(368) #reading
         whiteList.append(378) #greenwich lane
-
+        whiteList.append(159)  # VA Portland
+        whiteList.append(487)  # Intel RioRancho
+        whiteList.append(296)  # Cleaveland Clinic
 
         list = str(whiteList).strip('[]')
 
