@@ -48,6 +48,9 @@ class BatchStaleHistoryWarning():
         whiteList.append(159)  # VA Portland
         whiteList.append(487)  # Intel RioRancho
         whiteList.append(296)  # Cleaveland Clinic
+        whiteList.append(508) #3TimesSQ
+        whiteList.append(24) #ThousandOaks
+        whiteList.append(476) #VisionHNGZ
 
         list = str(whiteList).strip('[]')
 
@@ -81,6 +84,33 @@ class BatchStaleHistoryWarning():
         # ''' % self.getWhiteList()
 
 
+        # queryString = '''
+        #
+        # ;with
+        # NiagaraNetworkDownIDs as (
+        # select distinct SiteID  from oemvm.dim.vwAlertAllList
+        # where ( AlertID = 2 or
+        #     (  AlertID = 7 and
+        #        AlertName in ('JACE Connection Down', 'NiagaraNetworkDown') )
+        #     or AlertID = 14 or  AlertID = 11 )
+        #  ),
+        #  StaleHistoryIDs as (
+        #     Select distinct SiteID from [oemvm].[dim].[vwAlertAllList]
+        #     where AlertID = 12
+        # ) ,
+        # FinalIDs as (
+        #     Select  m.SiteID from StaleHistoryIDs m except select n.SiteID from NiagaraNetworkDownIDs n
+        # )
+        # select c.Name CustomerName, site.SiteID, site.ShortName SiteName, inst.InstallationID, station.StationID, station.SupervisorID, super.BaseAddressHistory, super.BaseAddressLive
+        # from FinalIDs f, oemvm.dim.Customer c, oemvm.dim.Site site
+        # join oemvm.dim.Installation inst on inst.SiteID = site.SiteID
+        # join oemvm.dim.Station station on station.InstallationID = inst.InstallationID
+        # join oemvm.dim.supervisor super on super.SupervisorID = station.SupervisorID
+        # where f.SiteID = site.SiteID and site.CustomerID = c.CustomerID
+        # and site.SiteID not in (%s)
+        #
+        # ''' % self.getWhiteList()
+
         queryString = '''
 
         ;with
@@ -104,9 +134,9 @@ class BatchStaleHistoryWarning():
         join oemvm.dim.Station station on station.InstallationID = inst.InstallationID
         join oemvm.dim.supervisor super on super.SupervisorID = station.SupervisorID
         where f.SiteID = site.SiteID and site.CustomerID = c.CustomerID
-        and site.SiteID not in (%s)
+        and and site.IsIgnoreStaleHistory=0
+        '''
 
-        ''' % self.getWhiteList()
 
         conn = pymssql.connect(host='e3os-sql.optimumenergy.net', user='Tominator', password='dT0A@N^V', as_dict=True)
         cur = conn.cursor()
